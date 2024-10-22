@@ -1,18 +1,16 @@
 package kms.kbopitcherapi.domain.file;
 
-
 import jakarta.persistence.*;
 import kms.kbopitcherapi.domain.BaseEntity;
-import kms.kbopitcherapi.domain.player.Player;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "Files")
-public class File extends BaseEntity {
+public class PlayerFile extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +20,9 @@ public class File extends BaseEntity {
     private String originalFilename;
     private String quizFilename;
 
+    @Builder
+    private PlayerFile(String originalFilename, String quizFilename) {
+        this.originalFilename = originalFilename;
+        this.quizFilename = quizFilename;
+    }
 }

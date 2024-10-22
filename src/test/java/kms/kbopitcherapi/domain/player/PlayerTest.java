@@ -1,13 +1,12 @@
 package kms.kbopitcherapi.domain.player;
 
-import org.assertj.core.api.Assertions;
+import kms.kbopitcherapi.domain.file.PlayerFile;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
@@ -15,13 +14,17 @@ class PlayerTest {
     @DisplayName("선수를 생성한다.")
     void makePlayer() throws Exception {
         //given
+        PlayerFile file = PlayerFile.builder()
+                .originalFilename("test.mp4")
+                .quizFilename("test_q.mp4").build();
+
         Player player = Player.builder()
                 .backNumber(1)
                 .birthDate(LocalDate.of(1997, 7, 25))
                 .position(Position.SP)
                 .team(Team.SK)
                 .name("김민성")
-                .file(null)
+                .playerFile(file)
                 .build();
 
         //when //then
@@ -30,7 +33,27 @@ class PlayerTest {
         assertThat(player.getPosition()).isEqualTo(Position.SP);
         assertThat(player.getTeam()).isEqualTo(Team.SK);
         assertThat(player.getName()).isEqualTo("김민성");
+        assertThat(player.getPlayerFile()).isEqualTo(file);
+        assertThat(player.getDeleteYn()).isEqualTo("N");
     }
 
+    @Test
+    @DisplayName("선수를 논리 삭제한다.")
+    void logicDelete() throws Exception {
+        //given
+        Player player = Player.builder()
+                .backNumber(1)
+                .birthDate(LocalDate.of(1997, 7, 25))
+                .position(Position.SP)
+                .team(Team.SK)
+                .name("김민성")
+                .build();
+
+        //when
+        Player deletedPlayer = player.logicDelete();
+        //then
+        assertThat(deletedPlayer).isEqualTo(player);
+        assertThat(deletedPlayer.getDeleteYn()).isEqualTo("Y");
+    }
 
 }
