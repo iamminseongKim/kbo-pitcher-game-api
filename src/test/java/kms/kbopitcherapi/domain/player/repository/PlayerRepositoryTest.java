@@ -128,7 +128,8 @@ class PlayerRepositoryTest {
                 .name("김민성")
                 .team(Team.SK)
                 .birthDate(LocalDate.of(1997,7,25))
-                .playerFile(playerFile).build();
+                .playerFile(playerFile)
+                .build();
 
         playerRepository.save(randomPlayer);
         //when
