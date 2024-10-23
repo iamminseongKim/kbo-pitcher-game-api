@@ -21,6 +21,11 @@ public class PitcherQueryService {
     }
 
     public QuizResponse matchRandomPlayerBy(UsersPickPlayerServiceRequest usersPickPlayer) {
+
+        if (usersPickPlayer.userPickIsCurrentAnswer()) {
+            return null;
+        }
+
         return null;
     }
 }

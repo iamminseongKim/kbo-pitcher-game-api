@@ -17,16 +17,22 @@ public class PitcherResponse {
     private Position position;
     private LocalDate birthDate;
     private int backNumber;
+    private String quizFileName;
+    private String answerFileName;
 
     @Builder
-    private PitcherResponse(Long id, String name, Team team, Position position, LocalDate birthDate, int backNumber) {
+    private PitcherResponse(Long id, String name, Team team, Position position, LocalDate birthDate, int backNumber, String quizFileName, String answerFileName) {
         this.id = id;
         this.name = name;
         this.team = team;
         this.position = position;
         this.birthDate = birthDate;
         this.backNumber = backNumber;
+        this.quizFileName = quizFileName;
+        this.answerFileName = answerFileName;
     }
+
+
 
     public static PitcherResponse of(Player player) {
         return PitcherResponse.builder()
@@ -36,6 +42,8 @@ public class PitcherResponse {
                 .position(player.getPosition())
                 .backNumber(player.getBackNumber())
                 .birthDate(player.getBirthDate())
+                .quizFileName(player.getPlayerFile().getQuizFilename())
+                .answerFileName(player.getPlayerFile().getOriginalFilename())
                 .build();
     }
 }
