@@ -1,0 +1,9 @@
+### csv 파일 읽어서 선수 등록
+
+POST localhost:8080/api/v1/pitcher/csv/new
+Content-Type: application/json
+
+{
+  "fileName": "file_info.csv",
+  "filePath": "D:/study/kbo-pitcher-api/src/main/resources/"
+}
