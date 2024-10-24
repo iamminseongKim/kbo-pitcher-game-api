@@ -1,27 +1,22 @@
 spring:
   profiles:
     default: local
-
-  datasource:
-    url: jdbc:h2:mem:~/kboPitcher
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-
-  jpa:
-    hibernate:
-      ddl-auto: create
-
-
 ---
 
 spring:
   config:
     activate:
       on-profile: local
+
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/kboPitcher
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
@@ -39,6 +34,12 @@ spring:
     activate:
       on-profile: test
 
+  datasource:
+    url: jdbc:h2:mem:~/kboPitcher
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
   jpa:
     hibernate:
       ddl-auto: create
@@ -46,6 +47,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+
 
   sql:
     init:

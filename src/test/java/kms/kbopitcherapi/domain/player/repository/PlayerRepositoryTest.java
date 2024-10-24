@@ -14,6 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
@@ -134,8 +135,11 @@ class PlayerRepositoryTest {
         playerRepository.save(randomPlayer);
         //when
 
-        Player playerByRandom = playerRepository.findPlayerByRandom();
+        Optional<Player> playerByRandomOpt = playerRepository.findPlayerByRandom();
+
         //then
+        assertThat(playerByRandomOpt).isPresent();
+        Player playerByRandom = playerByRandomOpt.get();
         assertThat(playerByRandom.getName()).isEqualTo(randomPlayer.getName());
         assertThat(playerByRandom.getBirthDate()).isEqualTo(randomPlayer.getBirthDate());
         assertThat(playerByRandom.getTeam()).isEqualTo(randomPlayer.getTeam());

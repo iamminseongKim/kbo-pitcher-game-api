@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 
@@ -17,5 +18,5 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     Player findByNameAndTeamAndBirthDate(String name, Team team, LocalDate birthDate);
 
     @Query("select p from Player p join fetch p.playerFile pf where p.deleteYn != 'Y' order by rand() limit 1")
-    Player findPlayerByRandom();
+    Optional<Player> findPlayerByRandom();
 }

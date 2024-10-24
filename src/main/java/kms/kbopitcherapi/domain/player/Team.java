@@ -1,5 +1,6 @@
 package kms.kbopitcherapi.domain.player;
 
+import kms.kbopitcherapi.api.controller.csv.exception.NotFoundAtMakePlayerException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -21,4 +22,12 @@ public enum Team {
 
     private final String teamName;
 
+    public static Team findTeam(String team) {
+        for (Team teamCode : Team.values()) {
+            if (teamCode.name().equals(team)) {
+                return teamCode;
+            }
+        }
+        throw new NotFoundAtMakePlayerException("해당 팀 코드는 잘못됬습니다. teamCode= " + team);
+    }
 }

@@ -1,13 +1,11 @@
-package kms.kbopitcherapi.api.controller;
+package kms.kbopitcherapi.api.controller.game;
 
+import kms.kbopitcherapi.api.controller.ApiResponse;
 import kms.kbopitcherapi.api.service.PitcherQueryService;
 import kms.kbopitcherapi.api.service.response.PitcherResponse;
-import kms.kbopitcherapi.domain.player.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
