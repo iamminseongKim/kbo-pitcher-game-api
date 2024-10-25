@@ -19,4 +19,7 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     @Query("select p from Player p join fetch p.playerFile pf where p.deleteYn != 'Y' order by rand() limit 1")
     Optional<Player> findPlayerByRandom();
+
+    @Query("select p from Player p join fetch p.playerFile pf where p.deleteYn != 'Y' and p.id = :randomPlayerId")
+    Optional<Player> findPlayerById(Long randomPlayerId);
 }

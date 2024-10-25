@@ -1,6 +1,6 @@
 package kms.kbopitcherapi.domain.player;
 
-import kms.kbopitcherapi.api.controller.csv.exception.NotFoundAtMakePlayerException;
+import kms.kbopitcherapi.api.exception.NotFoundAtMakePlayerException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

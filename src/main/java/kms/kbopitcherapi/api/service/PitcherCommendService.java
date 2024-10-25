@@ -1,6 +1,7 @@
 package kms.kbopitcherapi.api.service;
 
 import kms.kbopitcherapi.api.service.request.PlayerCommendServiceRequest;
+import kms.kbopitcherapi.domain.player.Player;
 import kms.kbopitcherapi.domain.player.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,11 +18,15 @@ public class PitcherCommendService {
     private final PlayerRepository playerRepository;
 
     @Transactional
-    public void insertPitchers(List<PlayerCommendServiceRequest> pitcherRequestList) {
-        for (PlayerCommendServiceRequest playerRequest : pitcherRequestList) {
-            log.info("신규 플레이어 저장, 이름 : {}, 팀 : {}", playerRequest.getName(), playerRequest.getTeam());
-            playerRepository.save(playerRequest.getPlayer());
-        }
+    public int insertPitchers(List<PlayerCommendServiceRequest> pitcherRequestList) {
+
+        List<Player> playerList = pitcherRequestList.stream()
+                .map(PlayerCommendServiceRequest::getPlayer)
+                .toList();
+
+        List<Player> savedPlayers = playerRepository.saveAll(playerList);
+
+        return savedPlayers.size();
     }
 
 }

@@ -1,6 +1,6 @@
 package kms.kbopitcherapi.api.controller.csv.dto.request;
 
-import kms.kbopitcherapi.api.controller.csv.exception.NotFoundAtMakePlayerException;
+import kms.kbopitcherapi.api.exception.NotFoundAtMakePlayerException;
 import kms.kbopitcherapi.api.service.request.PlayerCommendServiceRequest;
 import kms.kbopitcherapi.domain.player.Position;
 import kms.kbopitcherapi.domain.player.Team;

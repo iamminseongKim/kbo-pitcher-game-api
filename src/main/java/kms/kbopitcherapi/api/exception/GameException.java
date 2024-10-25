@@ -1,4 +1,4 @@
-package kms.kbopitcherapi.api.controller.game.exception;
+package kms.kbopitcherapi.api.exception;
 
 public class GameException extends RuntimeException {
     public GameException(String message) {

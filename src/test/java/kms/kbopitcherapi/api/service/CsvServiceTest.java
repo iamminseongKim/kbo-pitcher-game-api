@@ -1,19 +1,16 @@
 package kms.kbopitcherapi.api.service;
 
-import kms.kbopitcherapi.api.controller.csv.exception.NotFoundAtMakePlayerException;
+import kms.kbopitcherapi.api.exception.NotFoundAtMakePlayerException;
 import kms.kbopitcherapi.api.service.request.PlayerCommendServiceRequest;
-import kms.kbopitcherapi.domain.player.Position;
-import kms.kbopitcherapi.domain.player.Team;
-import org.assertj.core.api.Assertions;
+import kms.kbopitcherapi.api.service.response.PlayerCsvProcessResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CsvServiceTest {
 
@@ -25,10 +22,10 @@ class CsvServiceTest {
         CsvService csvService = new CsvService();
 
         //when
-        List<PlayerCommendServiceRequest> pitcherByCsv = csvService.createPitcherByCsv(filePath);
+        PlayerCsvProcessResult pitcherByCsv = csvService.createPitcherByCsv(filePath);
 
         //then
-        assertThat(pitcherByCsv).hasSize(2)
+        assertThat(pitcherByCsv.getSuccessList()).hasSize(2)
                 .extracting("name").containsExactlyInAnyOrder("구대성","김서현");
     }
 
@@ -40,7 +37,7 @@ class CsvServiceTest {
         CsvService csvService = new CsvService();
 
         //when
-        List<PlayerCommendServiceRequest> pitcherByCsv = csvService.createPitcherByCsv(filePath);
+        List<PlayerCommendServiceRequest> pitcherByCsv = csvService.createPitcherByCsv(filePath).getSuccessList();
 
         //then
         assertThat(pitcherByCsv).hasSize(1)
