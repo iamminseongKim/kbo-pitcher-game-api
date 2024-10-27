@@ -8,6 +8,7 @@ import kms.kbopitcherapi.api.service.response.QuizResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -28,7 +29,7 @@ public class PitcherQueryController {
 
     @PostMapping("/api/v1/pitcher/submit")
     public ApiResponse<QuizResponse> submitQuiz(@RequestBody QuizRequest request) {
-        return ApiResponse.ok(pitcherQueryService.matchRandomPlayerBy(request.getUsersPickPlayerServiceRequest()));
+        return ApiResponse.ok(pitcherQueryService.matchRandomPlayerBy(request.getUsersPickPlayerServiceRequest(), LocalDate.now()));
     }
 
 }

@@ -16,6 +16,10 @@ public class UsersPickPlayerServiceRequest {
         return tryCount > 6;
     }
 
+    public boolean hasUserTryCount() {
+        return !hasUserTryCountOver();
+    }
+
     public boolean userPickIsCorrect() {
         return randomPlayerId.equals(userPickPlayerId);
     }

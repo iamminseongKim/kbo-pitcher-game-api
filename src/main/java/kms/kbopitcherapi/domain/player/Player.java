@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -53,5 +54,37 @@ public class Player extends BaseEntity {
     public Player logicDelete() {
         this.deleteYn = "Y";
         return this;
+    }
+
+    public boolean doseBackNumMatch(int backNumber) {
+        return this.backNumber == backNumber;
+    }
+
+    public boolean dosePositionMatch(Position position) {
+        return this.position == position;
+    }
+
+    public boolean doseTeamMatch(Team team) {
+        return this.team == team;
+    }
+
+    public boolean doseAgeMatch(LocalDate inputBirthDate, LocalDate now) {
+        int currentAge = calculateExactAge(this.birthDate, now);
+        int inputAge = calculateExactAge(inputBirthDate, now);
+        return inputAge == currentAge;
+    }
+
+    private int calculateExactAge(LocalDate birthDate, LocalDate now) {
+
+        Period period = Period.between(birthDate, now);
+
+        int age = period.getYears();
+
+        if (now.getMonthValue() < birthDate.getMonthValue() ||
+                (now.getMonthValue() == birthDate.getMonthValue() && now.getDayOfMonth() < birthDate.getDayOfMonth())) {
+            age--;
+        }
+
+        return age;
     }
 }

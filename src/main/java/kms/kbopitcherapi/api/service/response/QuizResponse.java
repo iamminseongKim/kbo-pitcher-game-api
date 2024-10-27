@@ -14,7 +14,7 @@ public class QuizResponse {
 
     private boolean teamDiff;
     private boolean positionDiff;
-    private boolean birthDiff;
+    private boolean ageDiff;
     private boolean backNumDiff;
 
     private int tryCount;
@@ -24,13 +24,13 @@ public class QuizResponse {
     private PitcherResponse userPitcherResponse;
 
     @Builder
-    private QuizResponse(Long usersPickPitcherId, Long randomPitcherId, GameStatus gameStatus, boolean teamDiff, boolean positionDiff, boolean birthDiff, boolean backNumDiff, int tryCount, PitcherResponse randomPitcherResponse, PitcherResponse userPitcherResponse) {
+    private QuizResponse(Long usersPickPitcherId, Long randomPitcherId, GameStatus gameStatus, boolean teamDiff, boolean positionDiff, boolean ageDiff, boolean backNumDiff, int tryCount, PitcherResponse randomPitcherResponse, PitcherResponse userPitcherResponse) {
         this.usersPickPitcherId = usersPickPitcherId;
         this.randomPitcherId = randomPitcherId;
         this.gameStatus = gameStatus;
         this.teamDiff = teamDiff;
         this.positionDiff = positionDiff;
-        this.birthDiff = birthDiff;
+        this.ageDiff = ageDiff;
         this.backNumDiff = backNumDiff;
         this.tryCount = tryCount;
         this.randomPitcherResponse = randomPitcherResponse;
