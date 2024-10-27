@@ -29,6 +29,18 @@ public class PitcherQueryService {
                 .orElseThrow(() -> new GameException("선수가 1명도 없습니다.")));
     }
 
+    public List<PitcherResponse> autoPitcher(String name) {
+        List<Player> playerList = playerRepository.findByNameContaining(name);
+
+        if (playerList.isEmpty()) {
+            throw new NoSearchAutoCompleteException("선수 없음");
+        }
+
+        return playerList.stream()
+                .map(PitcherResponse::of)
+                .toList();
+    }
+
     public QuizResponse matchRandomPlayerBy(UsersPickPlayerServiceRequest usersPickInfo, LocalDate today) {
 
         if (usersPickInfo.hasUserTryCountOver() && usersPickInfo.userPickIsWrong()) {
@@ -50,6 +62,10 @@ public class PitcherQueryService {
         }
 
         // 랜덤선수의 값과, 유저 선택 값의 차이를 전달
+        return getPlayerDiff(usersPickInfo, today);
+    }
+
+    private QuizResponse getPlayerDiff(UsersPickPlayerServiceRequest usersPickInfo, LocalDate today) {
         Player randomPlayer = getRandomPlayerFrom(usersPickInfo);
         Player userPickPlayer = getUserPickPlayerFrom(usersPickInfo);
 
@@ -72,17 +88,5 @@ public class PitcherQueryService {
     private Player getRandomPlayerFrom(UsersPickPlayerServiceRequest usersPickInfo) {
         return playerRepository.findPlayerById(usersPickInfo.getRandomPlayerId())
                 .orElseThrow(() -> new GameException("선수가 없습니다.."));
-    }
-
-    public List<PitcherResponse> autoPitcher(String name) {
-        List<Player> playerList = playerRepository.findByNameContaining(name);
-
-        if (playerList.isEmpty()) {
-            throw new NoSearchAutoCompleteException("선수 없음");
-        }
-
-        return playerList.stream()
-                .map(PitcherResponse::of)
-                .toList();
     }
 }
