@@ -5,5 +5,5 @@ Content-Type: application/json
 
 {
   "fileName": "file_info.csv",
-  "filePath": "D:/study/kbo-pitcher-api/src/main/resources/"
+  "filePath": "/Users/minseong/study/kbo-pitcher-game-api/src/main/resources/"
 }

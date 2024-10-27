@@ -9,14 +9,14 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:h2:tcp://localhost/~/kboPitcher
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mariadb://localhost:3306/kbo_pitcher
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: kbo_pitcher
+    password: qwe123!@#
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
