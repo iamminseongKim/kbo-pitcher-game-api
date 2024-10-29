@@ -1,0 +1,9 @@
+[[pitcher-getRandom]]
+=== 랜덤 선수 조회
+
+==== HTTP Request
+include::{snippets}/pitcher-getRandom/http-request.adoc[]
+
+==== HTTP Response
+include::{snippets}/pitcher-getRandom/http-response.adoc[]
+include::{snippets}/pitcher-getRandom/response-fields.adoc[]

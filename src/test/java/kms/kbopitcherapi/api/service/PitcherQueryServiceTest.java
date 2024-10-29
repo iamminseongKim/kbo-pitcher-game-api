@@ -49,6 +49,9 @@ class PitcherQueryServiceTest {
         Player randomPlayer = Player.builder()
                 .name("김민성")
                 .playerFile(file)
+                .team(Team.SK)
+                .birthDate(LocalDate.of(1997, 7, 25))
+                .position(Position.SP)
                 .build();
 
         given(playerRepository.findPlayerByRandom())

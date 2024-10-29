@@ -8,16 +8,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Team {
 
-    HT("KIA"),
-    SS("삼성"),
-    LG("LG"),
-    OB("두산"),
-    KT("KT"),
-    SK("SSG"),
-    LT("롯데"),
-    HH("한화"),
-    NC("NC"),
-    WO("키움"),
+    HT("KIA 타이거즈"),
+    SS("삼성 라이온즈"),
+    LG("LG 트윈스"),
+    OB("두산 베어스"),
+    KT("KT 위즈"),
+    SK("SSG 랜더스"),
+    LT("롯데 자이언츠"),
+    HH("한화 이글스"),
+    NC("NC 다이노스"),
+    WO("키움 히어로즈"),
     ;
 
     private final String teamName;

@@ -8,3 +8,7 @@ Content-Type: application/json
   "userPlayerId": 2,
   "tryCount": 2
 }
+
+### 랜덤 선수 받기
+
+GET localhost:8080/api/v1/pitcher/random
