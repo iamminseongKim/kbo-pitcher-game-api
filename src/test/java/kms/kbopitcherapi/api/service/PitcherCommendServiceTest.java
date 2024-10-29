@@ -1,16 +1,15 @@
 package kms.kbopitcherapi.api.service;
 
+import kms.kbopitcherapi.IntegrationTestSupport;
 import kms.kbopitcherapi.api.service.request.PlayerCommendServiceRequest;
 import kms.kbopitcherapi.domain.player.Player;
 import kms.kbopitcherapi.domain.player.Position;
 import kms.kbopitcherapi.domain.player.Team;
 import kms.kbopitcherapi.domain.player.repository.PlayerRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,8 +17,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-class PitcherCommendServiceTest {
+class PitcherCommendServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private PitcherCommendService pitcherCommendService;

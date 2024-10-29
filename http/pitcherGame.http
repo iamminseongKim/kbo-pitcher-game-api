@@ -1,0 +1,10 @@
+### 선수 퀴즈 맞추기
+
+POST localhost:8080/api/v1/pitcher/submit
+Content-Type: application/json
+
+{
+  "randomPlayerId": 1,
+  "userPlayerId": 2,
+  "tryCount": 2
+}

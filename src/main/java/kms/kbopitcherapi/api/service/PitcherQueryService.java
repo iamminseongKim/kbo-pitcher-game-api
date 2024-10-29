@@ -77,6 +77,9 @@ public class PitcherQueryService {
                 .positionDiff(randomPlayer.dosePositionMatch(userPickPlayer.getPosition()))
                 .teamDiff(randomPlayer.doseTeamMatch(userPickPlayer.getTeam()))
                 .ageDiff(randomPlayer.doseAgeMatch(userPickPlayer.getBirthDate(), today))
+                .randomPitcherId(randomPlayer.getId())
+                .usersPickPitcherId(userPickPlayer.getId())
+                .tryCount(usersPickInfo.getTryCount())
                 .build();
     }
 

@@ -1,29 +1,22 @@
 package kms.kbopitcherapi.domain.player.repository;
 
+import kms.kbopitcherapi.IntegrationTestSupport;
 import kms.kbopitcherapi.domain.file.PlayerFile;
 import kms.kbopitcherapi.domain.player.Player;
 import kms.kbopitcherapi.domain.player.Position;
 import kms.kbopitcherapi.domain.player.Team;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
-import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
-import static org.junit.jupiter.api.Assertions.*;
 
-@ActiveProfiles("test")
-@SpringBootTest
-class PlayerRepositoryTest {
+class PlayerRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private PlayerRepository playerRepository;
@@ -101,15 +94,15 @@ class PlayerRepositoryTest {
     @DisplayName("사용자가 선택한 플레이어를 검색한다. 동명이인을 방지하기 위해 팀, 이름, 생년월일로 검색한다.")
     void findByNameAndTeamAndBirthDate() throws Exception {
         //given
-        Player player1 = Player.builder().name("김민성").team(Team.SK).birthDate(LocalDate.of(1997,7,25)).build();
-        Player player2 = Player.builder().name("김민성").team(Team.HH).birthDate(LocalDate.of(1997,7,25)).build();
-        Player player3 = Player.builder().name("김민성").team(Team.SK).birthDate(LocalDate.of(1995,7,25)).build();
-        Player player4 = Player.builder().name("김이성").team(Team.SK).birthDate(LocalDate.of(1997,7,25)).build();
+        Player player1 = Player.builder().name("김민성").team(Team.SK).birthDate(LocalDate.of(1997, 7, 25)).build();
+        Player player2 = Player.builder().name("김민성").team(Team.HH).birthDate(LocalDate.of(1997, 7, 25)).build();
+        Player player3 = Player.builder().name("김민성").team(Team.SK).birthDate(LocalDate.of(1995, 7, 25)).build();
+        Player player4 = Player.builder().name("김이성").team(Team.SK).birthDate(LocalDate.of(1997, 7, 25)).build();
 
         playerRepository.saveAll(List.of(player1, player2, player3, player4));
 
         //when
-        Player findPlayer = playerRepository.findByNameAndTeamAndBirthDate("김민성", Team.SK, LocalDate.of(1997,7,25));
+        Player findPlayer = playerRepository.findByNameAndTeamAndBirthDate("김민성", Team.SK, LocalDate.of(1997, 7, 25));
         //then
         assertThat(findPlayer.getName()).isEqualTo(player1.getName());
         assertThat(findPlayer.getBirthDate()).isEqualTo(player1.getBirthDate());
@@ -128,7 +121,7 @@ class PlayerRepositoryTest {
         Player randomPlayer = Player.builder()
                 .name("김민성")
                 .team(Team.SK)
-                .birthDate(LocalDate.of(1997,7,25))
+                .birthDate(LocalDate.of(1997, 7, 25))
                 .playerFile(playerFile)
                 .build();
 
