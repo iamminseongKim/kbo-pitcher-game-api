@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "randomPlayerId": 1,
-  "userPlayerId": 2,
+  "userPlayerId": 1,
   "tryCount": 2
 }
 

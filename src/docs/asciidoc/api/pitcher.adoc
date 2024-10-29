@@ -7,3 +7,34 @@ include::{snippets}/pitcher-getRandom/http-request.adoc[]
 ==== HTTP Response
 include::{snippets}/pitcher-getRandom/http-response.adoc[]
 include::{snippets}/pitcher-getRandom/response-fields.adoc[]
+
+
+[[pitcher-auto]]
+=== 자동완성 조회
+
+==== HTTP Request
+include::{snippets}/pitcher-auto/http-request.adoc[]
+include::{snippets}/pitcher-auto/path-parameters.adoc[]
+
+==== HTTP Response
+include::{snippets}/pitcher-auto/response-body.adoc[]
+include::{snippets}/pitcher-auto/response-fields.adoc[]
+
+[[pitcher-submit]]
+=== 랜덤 선수 맞추기 제출
+
+==== HTTP Request
+include::{snippets}/pitcher-submit/http-request.adoc[]
+include::{snippets}/pitcher-submit/request-fields.adoc[]
+
+==== HTTP Response
+include::{snippets}/pitcher-submit/response-body.adoc[]
+include::{snippets}/pitcher-submit/response-fields.adoc[]
+
+===== GameStatus
+|===
+|GameStatus|Description
+|CORRECT|정답
+|WRONG|오답
+|GAME_OVER|횟수 초과
+|===

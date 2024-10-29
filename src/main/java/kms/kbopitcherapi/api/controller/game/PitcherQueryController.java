@@ -3,6 +3,7 @@ package kms.kbopitcherapi.api.controller.game;
 import kms.kbopitcherapi.api.controller.ApiResponse;
 import kms.kbopitcherapi.api.controller.game.dto.request.QuizRequest;
 import kms.kbopitcherapi.api.service.PitcherQueryService;
+import kms.kbopitcherapi.api.service.request.UsersPickPlayerServiceRequest;
 import kms.kbopitcherapi.api.service.response.PitcherResponse;
 import kms.kbopitcherapi.api.service.response.QuizResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,8 @@ public class PitcherQueryController {
 
     @PostMapping("/api/v1/pitcher/submit")
     public ApiResponse<QuizResponse> submitQuiz(@RequestBody QuizRequest request) {
-        return ApiResponse.ok(pitcherQueryService.matchRandomPlayerBy(request.getUsersPickPlayerServiceRequest(), LocalDate.now()));
+        UsersPickPlayerServiceRequest usersPickPlayerServiceRequest = request.toUsersPickPlayerServiceRequest();
+        return ApiResponse.ok(pitcherQueryService.matchRandomPlayerBy(usersPickPlayerServiceRequest, LocalDate.now()));
     }
 
 }

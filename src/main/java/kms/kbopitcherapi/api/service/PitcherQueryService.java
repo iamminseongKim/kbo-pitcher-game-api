@@ -43,7 +43,7 @@ public class PitcherQueryService {
 
     public QuizResponse matchRandomPlayerBy(UsersPickPlayerServiceRequest usersPickInfo, LocalDate today) {
 
-        if (usersPickInfo.hasUserTryCountOver() && usersPickInfo.userPickIsWrong()) {
+        if (usersPickInfo.hasUserTryCountOver()) {
             // 사용자가 기회를 모두 소진
             Player randomPlayer = getRandomPlayerFrom(usersPickInfo);
             return QuizResponse.builder()
