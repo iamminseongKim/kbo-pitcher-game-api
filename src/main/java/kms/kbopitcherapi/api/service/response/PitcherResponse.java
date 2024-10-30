@@ -46,6 +46,17 @@ public class PitcherResponse {
                 .build();
     }
 
+    public static PitcherResponse ofRandom(Player player) {
+        return PitcherResponse.builder()
+                .id(player.getId())
+                .team(Team.SK)
+                .position(Position.SP)
+                .birthDate(LocalDate.now())
+                .quizFileName(player.getPlayerFile().getQuizFilename())
+                .answerFileName(player.getPlayerFile().getOriginalFilename())
+                .build();
+    }
+
     private int calculateExactAge(LocalDate birthDate, LocalDate now) {
 
         Period period = Period.between(birthDate, now);

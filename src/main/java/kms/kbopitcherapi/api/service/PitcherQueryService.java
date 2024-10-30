@@ -25,7 +25,7 @@ public class PitcherQueryService {
     private final PlayerRepository playerRepository;
 
     public PitcherResponse getRandomPlayer() {
-        return PitcherResponse.of(playerRepository.findPlayerByRandom()
+        return PitcherResponse.ofRandom(playerRepository.findPlayerByRandom()
                 .orElseThrow(() -> new GameException("선수가 1명도 없습니다.")));
     }
 
