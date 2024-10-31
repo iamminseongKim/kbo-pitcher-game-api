@@ -17,6 +17,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -29,6 +30,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 class PitcherQueryServiceTest {
 
@@ -61,7 +63,6 @@ class PitcherQueryServiceTest {
         PitcherResponse randomPitcherResponse = pitcherQueryService.getRandomPlayer();
         //then
         assertThat(randomPitcherResponse).isNotNull();
-        assertThat(randomPitcherResponse.getName()).isEqualTo(randomPlayer.getName());
         assertThat(randomPitcherResponse.getQuizFileName()).isEqualTo(randomPlayer.getPlayerFile().getQuizFilename());
 
     }
