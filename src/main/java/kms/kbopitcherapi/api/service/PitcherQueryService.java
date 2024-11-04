@@ -23,6 +23,7 @@ import java.util.List;
 public class PitcherQueryService {
 
     private final PlayerRepository playerRepository;
+    private final PlayerCacheService playerCacheService;
 
     public PitcherResponse getRandomPlayer() {
         return PitcherResponse.ofRandom(playerRepository.findPlayerByRandom()
@@ -30,6 +31,14 @@ public class PitcherQueryService {
     }
 
     public List<PitcherResponse> autoPitcher(String name) {
+
+
+        List<PitcherResponse> pitcherResponses = playerCacheService.searchPlayersByPrefix(name);
+
+        if (!pitcherResponses.isEmpty()) {
+            return pitcherResponses;
+        }
+
         List<Player> playerList = playerRepository.findByNameContaining(name);
 
         if (playerList.isEmpty()) {
@@ -71,7 +80,7 @@ public class PitcherQueryService {
 
         return QuizResponse.builder()
                 .gameStatus(GameStatus.WRONG)
-                .randomPitcherResponse(PitcherResponse.of(randomPlayer))
+                //.randomPitcherResponse(PitcherResponse.of(randomPlayer))
                 .userPitcherResponse(PitcherResponse.of(userPickPlayer))
                 .backNumDiff(randomPlayer.doseBackNumMatch(userPickPlayer.getBackNumber()))
                 .positionDiff(randomPlayer.dosePositionMatch(userPickPlayer.getPosition()))

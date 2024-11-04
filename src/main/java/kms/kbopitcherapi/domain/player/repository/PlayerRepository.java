@@ -22,4 +22,7 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     @Query("select p from Player p join fetch p.playerFile pf where p.deleteYn != 'Y' and p.id = :randomPlayerId")
     Optional<Player> findPlayerById(Long randomPlayerId);
+
+    @Query("select p from Player p join fetch p.playerFile pf")
+    List<Player> findAllForCache();
 }
